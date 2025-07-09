@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YPS Genie - Your Personal Success Partner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <section id="welcome-screen" class="welcome-screen active">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="logo-animation">
+                    <div class="logo-icon">🧞‍♂️</div>
+                    <h1 class="hero-title">YPS Genie</h1>
+                </div>
+                <h2 class="hero-subtitle">Your Personal Success Partner</h2>
+                <p class="hero-description">Transform your business with AI-powered task management that delivers results faster than ever before.</p>
+                <button class="btn btn--primary btn--hero" onclick="startOnboarding()">
+                    <span class="btn-text">Get Started</span>
+                    <span class="btn-icon">✨</span>
+                </button>
+            </div>
+            <div class="hero-features">
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Content Creation</h3>
+                    <p>Professional blog posts, articles, and copywriting</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Marketing Solutions</h3>
+                    <p>Strategic campaigns and social media management</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites and applications</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Creative Design</h3>
+                    <p>Beautiful graphics and brand identity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Onboarding Screen -->
+    <section id="onboarding-screen" class="onboarding-screen">
+        <div class="onboarding-container">
+            <div class="onboarding-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="onboarding-progress"></div>
+                </div>
+                <span class="progress-text">Step <span id="current-step">1</span> of 4</span>
+            </div>
+
+            <!-- Step 1: Email Registration -->
+            <div class="onboarding-step active" id="step-1">
+                <h2 class="step-title">Welcome! Let's get you started</h2>
+                <p class="step-description">Enter your email to create your account</p>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control form-control--animated" id="email" placeholder="your@email.com" required>
+                </div>
+                <button class="btn btn--primary btn--full" onclick="nextStep()">Continue</button>
+            </div>
+
+            <!-- Step 2: Business Profile -->
+            <div class="onboarding-step" id="step-2">
+                <h2 class="step-title">Tell us about your business</h2>
+                <p class="step-description">Help us personalize your experience</p>
+                <div class="form-group">
+                    <label class="form-label">Company Name</label>
+                    <input type="text" class="form-control form-control--animated" id="company" placeholder="Your Company Name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Your Role</label>
+                    <input type="text" class="form-control form-control--animated" id="role" placeholder="CEO, Marketing Manager, etc." required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Team Size</label>
+                    <select class="form-control form-control--animated" id="team-size" required>
+                        <option value="">Select team size</option>
+                        <option value="1-5">1-5 employees</option>
+                        <option value="6-20">6-20 employees</option>
+                        <option value="21-50">21-50 employees</option>
+                        <option value="51+">51+ employees</option>
+                    </select>
+                </div>
+                <button class="btn btn--primary btn--full" onclick="nextStep()">Continue</button>
+            </div>
+
+            <!-- Step 3: Industry Selection -->
+            <div class="onboarding-step" id="step-3">
+                <h2 class="step-title">What industry are you in?</h2>
+                <p class="step-description">This helps us tailor our services to your needs</p>
+                <div class="industry-grid">
+                    <div class="industry-card" data-industry="technology">
+                        <div class="industry-icon">💻</div>
+                        <span>Technology</span>
+                    </div>
+                    <div class="industry-card" data-industry="healthcare">
+                        <div class="industry-icon">🏥</div>
+                        <span>Healthcare</span>
+                    </div>
+                    <div class="industry-card" data-industry="finance">
+                        <div class="industry-icon">💰</div>
+                        <span>Finance</span>
+                    </div>
+                    <div class="industry-card" data-industry="education">
+                        <div class="industry-icon">🎓</div>
+                        <span>Education</span>
+                    </div>
+                    <div class="industry-card" data-industry="retail">
+                        <div class="industry-icon">🛍️</div>
+                        <span>Retail</span>
+                    </div>
+                    <div class="industry-card" data-industry="other">
+                        <div class="industry-icon">🏢</div>
+                        <span>Other</span>
+                    </div>
+                </div>
+                <button class="btn btn--primary btn--full" onclick="nextStep()" disabled id="industry-continue">Continue</button>
+            </div>
+
+            <!-- Step 4: Welcome Package -->
+            <div class="onboarding-step" id="step-4">
+                <h2 class="step-title">🎉 Welcome to YPS Genie!</h2>
+                <p class="step-description">You're all set! Here's your welcome package:</p>
+                <div class="welcome-package">
+                    <div class="package-item">
+                        <div class="package-icon">🎁</div>
+                        <div class="package-content">
+                            <h3>50 Free Credits</h3>
+                            <p>Start exploring our services with complimentary credits</p>
+                        </div>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-icon">🚀</div>
+                        <div class="package-content">
+                            <h3>Priority Support</h3>
+                            <p>Get help whenever you need it with our dedicated support team</p>
+                        </div>
+                    </div>
+                    <div class="package-item">
+                        <div class="package-icon">📚</div>
+                        <div class="package-content">
+                            <h3>Quick Start Guide</h3>
+                            <p>Learn how to make the most of your YPS Genie experience</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn--primary btn--full" onclick="completeOnboarding()">Enter Dashboard</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard -->
+    <section id="dashboard" class="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🧞‍♂️</div>
+                    <span class="logo-text">YPS Genie</span>
+                </div>
+                <nav class="nav">
+                    <a href="#" class="nav-link active" data-section="dashboard">Dashboard</a>
+                    <a href="#" class="nav-link" data-section="tasks">Tasks</a>
+                    <a href="#" class="nav-link" data-section="progress">Progress</a>
+                    <a href="#" class="nav-link" data-section="credits">Credits</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="voice-btn" onclick="toggleVoiceMode()">
+                        <div class="voice-icon">🎤</div>
+                        <span class="voice-text">Voice Mode</span>
+                    </button>
+                    <div class="credits-display">
+                        <span class="credits-amount">50</span>
+                        <span class="credits-label">Credits</span>
+                    </div>
+                    <div class="user-profile">
+                        <span class="user-name">John Doe</span>
+                        <div class="user-avatar">JD</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="container">
+                    <div class="dashboard-header">
+                        <h1 class="dashboard-title">Welcome back, John! 👋</h1>
+                        <p class="dashboard-subtitle">Ready to accomplish amazing things today?</p>
+                    </div>
+
+                    <!-- Stats Overview -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📊</div>
+                            <div class="stat-content">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Total Tasks</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-content">
+                                <div class="stat-number">8</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⚡</div>
+                            <div class="stat-content">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">In Progress</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-content">
+                                <div class="stat-number">50</div>
+                                <div class="stat-label">Credits</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <h2 class="section-title">Quick Actions</h2>
+                        <div class="action-cards">
+                            <div class="action-card" onclick="showTaskSubmission()">
+                                <div class="action-icon">➕</div>
+                                <h3>Submit New Task</h3>
+                                <p>Get started on your next project</p>
+                            </div>
+                            <div class="action-card" onclick="showSection('progress')">
+                                <div class="action-icon">📈</div>
+                                <h3>View Progress</h3>
+                                <p>Check status of active tasks</p>
+                            </div>
+                            <div class="action-card" onclick="showSection('credits')">
+                                <div class="action-icon">💳</div>
+                                <h3>Buy Credits</h3>
+                                <p>Get more credits for new tasks</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Tasks -->
+                    <div class="recent-tasks">
+                        <h2 class="section-title">Recent Tasks</h2>
+                        <div class="task-list">
+                            <div class="task-item">
+                                <div class="task-icon">📝</div>
+                                <div class="task-content">
+                                    <h3>Blog Post: Digital Marketing Trends</h3>
+                                    <p>Content • 15 Credits • Due July 15</p>
+                                </div>
+                                <div class="task-status status-drafting">Drafting</div>
+                                <div class="task-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-item">
+                                <div class="task-icon">📈</div>
+                                <div class="task-content">
+                                    <h3>Social Media Campaign</h3>
+                                    <p>Marketing • 25 Credits • Due July 20</p>
+                                </div>
+                                <div class="task-status status-review">Client Review</div>
+                                <div class="task-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tasks Section -->
+            <section id="tasks-section" class="content-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h1 class="section-title">Task Categories</h1>
+                        <p class="section-subtitle">Choose a category to submit your task</p>
+                    </div>
+
+                    <div class="categories-grid">
+                        <div class="category-card" data-category="content">
+                            <div class="category-icon">📝</div>
+                            <h3>Content</h3>
+                            <p>Blog posts, articles, copywriting</p>
+                            <div class="category-arrow">→</div>
+                        </div>
+                        <div class="category-card" data-category="marketing">
+                            <div class="category-icon">📈</div>
+                            <h3>Marketing</h3>
+                            <p>Social media, campaigns, strategy</p>
+                            <div class="category-arrow">→</div>
+                        </div>
+                        <div class="category-card" data-category="web-app">
+                            <div class="category-icon">💻</div>
+                            <h3>Web/App</h3>
+                            <p>Development, design, maintenance</p>
+                            <div class="category-arrow">→</div>
+                        </div>
+                        <div class="category-card" data-category="creative">
+                            <div class="category-icon">🎨</div>
+                            <h3>Creative</h3>
+                            <p>Design, graphics, branding</p>
+                            <div class="category-arrow">→</div>
+                        </div>
+                        <div class="category-card" data-category="productivity">
+                            <div class="category-icon">⚡</div>
+                            <h3>Productivity</h3>
+                            <p>Automation, tools, optimization</p>
+                            <div class="category-arrow">→</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section id="progress-section" class="content-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h1 class="section-title">Task Progress</h1>
+                        <p class="section-subtitle">Track your active tasks and their status</p>
+                    </div>
+
+                    <div class="progress-dashboard">
+                        <div class="progress-filters">
+                            <button class="filter-btn active" data-filter="all">All Tasks</button>
+                            <button class="filter-btn" data-filter="drafting">Drafting</button>
+                            <button class="filter-btn" data-filter="qa-review">QA Review</button>
+                            <button class="filter-btn" data-filter="client-review">Client Review</button>
+                            <button class="filter-btn" data-filter="complete">Complete</button>
+                        </div>
+
+                        <div class="task-cards">
+                            <div class="task-card" data-status="drafting">
+                                <div class="task-header">
+                                    <div class="task-category">📝 Content</div>
+                                    <div class="task-status status-drafting">Drafting</div>
+                                </div>
+                                <h3 class="task-title">Blog Post: Digital Marketing Trends</h3>
+                                <p class="task-description">Write a comprehensive blog post about emerging digital marketing trends</p>
+                                <div class="task-meta">
+                                    <span class="task-credits">15 Credits</span>
+                                    <span class="task-deadline">Due: July 15, 2025</span>
+                                </div>
+                                <div class="task-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 25%"></div>
+                                    </div>
+                                    <span class="progress-text">25% Complete</span>
+                                </div>
+                            </div>
+
+                            <div class="task-card" data-status="client-review">
+                                <div class="task-header">
+                                    <div class="task-category">📈 Marketing</div>
+                                    <div class="task-status status-review">Client Review</div>
+                                </div>
+                                <h3 class="task-title">Social Media Campaign</h3>
+                                <p class="task-description">Create a 2-week social media campaign for product launch</p>
+                                <div class="task-meta">
+                                    <span class="task-credits">25 Credits</span>
+                                    <span class="task-deadline">Due: July 20, 2025</span>
+                                </div>
+                                <div class="task-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <span class="progress-text">75% Complete</span>
+                                </div>
+                            </div>
+
+                            <div class="task-card" data-status="complete">
+                                <div class="task-header">
+                                    <div class="task-category">🎨 Creative</div>
+                                    <div class="task-status status-complete">Complete</div>
+                                </div>
+                                <h3 class="task-title">Logo Design</h3>
+                                <p class="task-description">Design a modern logo for tech startup</p>
+                                <div class="task-meta">
+                                    <span class="task-credits">30 Credits</span>
+                                    <span class="task-deadline">Completed: July 10, 2025</span>
+                                </div>
+                                <div class="task-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 100%"></div>
+                                    </div>
+                                    <span class="progress-text">100% Complete</span>
+                                </div>
+                                <button class="btn btn--primary btn--sm">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Credits Section -->
+            <section id="credits-section" class="content-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h1 class="section-title">Credit Management</h1>
+                        <p class="section-subtitle">Manage your credits and purchase more</p>
+                    </div>
+
+                    <div class="credits-overview">
+                        <div class="current-balance">
+                            <h2>Current Balance</h2>
+                            <div class="balance-amount">50 Credits</div>
+                            <div class="balance-value">≈ $125 value</div>
+                        </div>
+
+                        <div class="credit-packages">
+                            <h2>Purchase Credits</h2>
+                            <div class="packages-grid">
+                                <div class="package-card">
+                                    <div class="package-popular">Most Popular</div>
+                                    <div class="package-amount">50 Credits</div>
+                                    <div class="package-price">$99</div>
+                                    <div class="package-description">Perfect for small businesses</div>
+                                    <button class="btn btn--primary btn--full">Purchase</button>
+                                </div>
+                                <div class="package-card">
+                                    <div class="package-amount">150 Credits</div>
+                                    <div class="package-price">$249</div>
+                                    <div class="package-description">Ideal for growing companies</div>
+                                    <button class="btn btn--primary btn--full">Purchase</button>
+                                </div>
+                                <div class="package-card">
+                                    <div class="package-amount">500 Credits</div>
+                                    <div class="package-price">$749</div>
+                                    <div class="package-description">For large organizations</div>
+                                    <button class="btn btn--primary btn--full">Purchase</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="credit-history">
+                        <h2>Transaction History</h2>
+                        <div class="history-list">
+                            <div class="history-item">
+                                <div class="history-icon">🎁</div>
+                                <div class="history-content">
+                                    <h3>Welcome Bonus</h3>
+                                    <p>July 9, 2025</p>
+                                </div>
+                                <div class="history-amount positive">+50 Credits</div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-icon">📝</div>
+                                <div class="history-content">
+                                    <h3>Blog Post Task</h3>
+                                    <p>July 8, 2025</p>
+                                </div>
+                                <div class="history-amount negative">-15 Credits</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </section>
+
+    <!-- Task Submission Modal -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Submit New Task</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="task-form">
+                    <div class="form-group">
+                        <label class="form-label">Task Title</label>
+                        <input type="text" id="task-title" class="form-control form-control--animated" placeholder="Describe your task briefly..." required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select id="task-category" class="form-control form-control--animated" required>
+                            <option value="">Select a category</option>
+                            <option value="content">📝 Content</option>
+                            <option value="marketing">📈 Marketing</option>
+                            <option value="web-app">💻 Web/App</option>
+                            <option value="creative">🎨 Creative</option>
+                            <option value="productivity">⚡ Productivity</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Detailed Description</label>
+                        <textarea id="task-description" class="form-control form-control--animated" rows="4" placeholder="Provide detailed requirements and expectations..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Deadline</label>
+                        <input type="date" id="task-deadline" class="form-control form-control--animated" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Inspiration/References (Optional)</label>
+                        <div class="file-upload">
+                            <input type="file" id="task-files" multiple accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                            <label for="task-files">
+                                <div class="upload-icon">📎</div>
+                                <span>Click to upload files or drag & drop</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn--secondary" onclick="closeModal()">Cancel</button>
+                        <button type="submit" class="btn btn--primary">Submit Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Assessment Modal -->
+    <div id="assessment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>AI Assessment</h2>
+            </div>
+            <div class="modal-body">
+                <div class="assessment-stage" id="assessment-analyzing">
+                    <div class="ai-animation">
+                        <div class="ai-brain">🧠</div>
+                        <div class="ai-pulse"></div>
+                    </div>
+                    <h3>Analyzing your task...</h3>
+                    <p>Our AI is reviewing your requirements and estimating the scope</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="assessment-progress"></div>
+                    </div>
+                </div>
+                <div class="assessment-stage" id="assessment-results" style="display: none;">
+                    <div class="assessment-complete">
+                        <div class="complete-icon">✅</div>
+                        <h3>Assessment Complete!</h3>
+                    </div>
+                    <div class="assessment-details">
+                        <div class="detail-card">
+                            <div class="detail-icon">💰</div>
+                            <div class="detail-content">
+                                <h4>Estimated Credits</h4>
+                                <p class="detail-value">15 Credits</p>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon">⏱️</div>
+                            <div class="detail-content">
+                                <h4>Completion Time</h4>
+                                <p class="detail-value">3-5 Business Days</p>
+                            </div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="detail-icon">📊</div>
+                            <div class="detail-content">
+                                <h4>Complexity Level</h4>
+                                <p class="detail-value">Medium</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn btn--secondary" onclick="closeModal()">Revise Task</button>
+                        <button class="btn btn--primary" onclick="showProposal()">View Proposal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Proposal Modal -->
+    <div id="proposal-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Project Proposal</h2>
+            </div>
+            <div class="modal-body">
+                <div class="proposal-content">
+                    <h3>Recommended Approach</h3>
+                    <div class="proposal-steps">
+                        <div class="step-item">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Research & Planning</h4>
+                                <p>Analyze your requirements and create a detailed project plan</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Content Creation</h4>
+                                <p>Develop high-quality content based on your specifications</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Review & Refinement</h4>
+                                <p>Quality assurance and client feedback integration</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Final Delivery</h4>
+                                <p>Deliver polished final product with documentation</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="proposal-summary">
+                        <div class="summary-item">
+                            <span class="summary-label">Total Credits:</span>
+                            <span class="summary-value">15 Credits</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Estimated Timeline:</span>
+                            <span class="summary-value">3-5 Business Days</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Revisions Included:</span>
+                            <span class="summary-value">2 Rounds</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn--secondary" onclick="closeModal()">Cancel</button>
+                    <button class="btn btn--primary" onclick="approveProposal()">Approve & Start</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Mode Modal -->
+    <div id="voice-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Voice Command Mode</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="voice-interface">
+                    <div class="voice-animation">
+                        <div class="voice-circle">
+                            <div class="voice-microphone">🎤</div>
+                            <div class="voice-waves">
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voice-status">
+                        <h3>Listening...</h3>
+                        <p>Try saying: "Submit a new content task" or "Check my progress"</p>
+                    </div>
+                    <div class="voice-transcript">
+                        <div class="transcript-text" id="voice-transcript">Click the microphone to start</div>
+                    </div>
+                    <div class="voice-actions">
+                        <button class="btn btn--primary voice-toggle" onclick="toggleVoiceRecording()">
+                            <span class="voice-btn-text">Start Listening</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notification-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
